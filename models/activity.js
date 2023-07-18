@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const activitySchema = new Schema(
   {
-    name: {
+    activity: {
       type: String,
       required: true,
     },
@@ -12,12 +12,9 @@ const activitySchema = new Schema(
       ref: "User",
       required: true,
     },
-    time: Date,
-    notes: String,
-    topProrities: {
-      type: Boolean,
-      default: false,
-    },
+    activitytime: Date,
+    note: String,
+    priority: String,
   },
   {
     timestamps: true,

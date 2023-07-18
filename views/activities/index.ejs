@@ -1,35 +1,38 @@
 <%- include('../partials/header') %>
 
 <div class="container-main">
-    <h3 align="center">Actvities List</h3>
-    <div class="row">
-        <input type="date" name="activitydate" class="form-control"/>
-     <div class="row">
-
+  <br />
+  <h4 align="center">Actvities List</h4>
+  <div class="row">
+    <input type="date" name="activitydate" class="form-control"/>
+    <br/>&nbsp;
+  </div>
+  <div class="row">
+    <br/>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>Time</th>
           <th>Activity</th>
           <th>Notes</th>
-          <th></th>         
-          <th></th>         
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <!-- Write the line of EJS to iterate over flights using forEach -->
         <% activities.forEach(a => { %>
-          <tr>
-            <td><%= a.time %></td>
-            <td><%= a.name %></td>
-            <td><%= a.notes %></td>
-            <td><a href="/edit/<%= a._id %>">Edit</a></td>
-            <td><a href="/delete/<%= a._id %>">Delete</a></td>
-          </tr>
+        <tr>
+          <td><%= a.activitytime %></td>
+          <td><%= a.activity %></td>
+          <td><%= a.note %></td>
+          <td><a href="/edit/<%= a._id %>">Edit</a></td>
+          <td><a href="/delete/<%= a._id %>">Delete</a></td>
+        </tr>
         <!-- Close the forEach using EJS here -->
         <% }); %>
-      </tbody> 
+      </tbody>
     </table>
-    </div>
-    </div>
+  </div>
+</div>
 <%- include('../partials/footer') %>
