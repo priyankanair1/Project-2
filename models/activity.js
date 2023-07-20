@@ -13,7 +13,12 @@ const activitySchema = new Schema(
       required: true,
     },
     activitytime: Date,
-    note: String,
+    notes: [],
+    //notes: [noteSchema],
+    /*notes: [{
+      type: Schema.Types.ObjectId,
+      ref: "Note",
+    }],*/
     priority: String,
   },
   {

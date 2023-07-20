@@ -1,15 +1,14 @@
 <%- include('../partials/header') %>
-
 <div class="container-main">
   <br />
-  <h4 align="center">Actvities List</h4>
+  <h4 align="center">Actvities</h4>
   <div class="row">
-    <input type="date" name="activitydate" class="form-control"/>
+    <input type="date" name="activitydate" id="activitydate" class="form-control activitydate" value="<%= activitydate %>" onchange="chooseActivityDate(this)"/>
     <br/>&nbsp;
   </div>
   <div class="row">
     <br/>
-    <table class="table table-striped">
+    <table class="table table-hover table-secondary"">
       <thead>
         <tr>
           <th>Time</th>
@@ -23,9 +22,9 @@
         <!-- Write the line of EJS to iterate over flights using forEach -->
         <% activities.forEach(a => { %>
         <tr>
-          <td><%= a.activitytime %></td>
+          <td><%= a.activitytime.toLocaleTimeString() %></td>
           <td><%= a.activity %></td>
-          <td><%= a.note %></td>
+          <td><%= a.notes %></td>
           <td><a href="/edit/<%= a._id %>">Edit</a></td>
           <td><a href="/delete/<%= a._id %>">Delete</a></td>
         </tr>

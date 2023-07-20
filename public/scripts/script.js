@@ -1,6 +1,3 @@
-function today() {
-  $("#activitytime").datepicker({
-    setDate: new Date(),
-    autoclose: true,
-  });
+function chooseActivityDate(obj) {
+  window.location.href = '/activities?date=' + obj.value;
 }
