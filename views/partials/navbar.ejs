@@ -13,9 +13,11 @@
           </a>
         </li>
         <li class="nav-item">
-          &nbsp;<a class="btn btn-secondary my-2 my-sm-0" href="/activities/add">Add Activities</a>
+          &nbsp;<a class="btn btn-secondary my-2 my-sm-0" href="/activities/add">Add Activities</a>          
         </li>
       </ul>
+      <img src="<%= user.avatar%>"  class="img-thumbnai rounded-circle" width="50" height="50"/>&nbsp;
+      <%= user.name%> &nbsp;      
       <a href="/logout" class="btn btn-secondary my-2 my-sm-0">Logout</a>
       <% } else { %>
         <a href="/auth/google" class="btn btn-secondary my-2 my-sm-0">Login</a>
