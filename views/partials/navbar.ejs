@@ -19,7 +19,7 @@
       <img src="<%= user.avatar%>"  class="img-thumbnai rounded-circle" width="50" height="50"/>&nbsp;
       <%= user.name%> &nbsp;      
       <a href="/logout" class="btn btn-secondary my-2 my-sm-0">Logout</a>
-      <% } else { %>
+      <% } else { %><span><img width="45" height="45" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/></span>
         <a href="/auth/google" class="btn btn-secondary my-2 my-sm-0">Login</a>
       <% } %>
       </form>
