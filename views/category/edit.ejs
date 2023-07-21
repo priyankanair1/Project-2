@@ -38,16 +38,6 @@
               value="<%= activity.activity %> "
             />
           </div>
-          <div class="form-group">
-            <label for="category" class="form-label mt-2">Category</label>
-            <select class="form-select" id="category" name="category">
-              <% categories.forEach(c => { if(c.id == activity.category.id) { %>
-              <option value="<%= c._id %>" selected><%= c.category %></option>
-              <% } else { %>
-              <option value="<%= c._id %>"><%= c.category %></option>
-              <% } %> <% }) %>
-            </select>
-          </div>
           <div class="form-group" name="notes-div" id="notes-div">
             <label class="form-label mt-2">Notes</label>
             <% activity.notes.forEach(note => { %>

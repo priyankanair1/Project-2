@@ -1,11 +1,14 @@
+function chooseActivityDate(obj) {
+  window.location.href = "/activities?date=" + obj.value;
+}
 function addNoteInput() {
-  var note = document.createElement('input');
+  var note = document.createElement("input");
   note.type = "text";
   note.name = "notes";
   note.id = "notes";
-  note.className="form-control";
-  note.placeholder="Note"; 
-  document.getElementById("notes-div").appendChild(note);  
+  note.className = "form-control";
+  note.placeholder = "Note";
+  document.getElementById("notes-div").appendChild(note);
 }
 
 function deleteNoteInput(obj) {

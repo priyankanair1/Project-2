@@ -29,19 +29,16 @@
           <tr>
             <th>Time</th>
             <th>Activity</th>
-            <th>Category</th>
             <th>Notes</th>
             <th></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-        
           <% activities.forEach(a => { %>
           <tr>
             <td><%= a.activitytime.toLocaleTimeString() %></td>
             <td><%= a.activity %></td>
-            <td><%= a.category.category %></td>
             <td><%= a.notes %></td>
             <td>
               <a href="/activities/<%= a._id%>/edit" class="btn btn-primary">EDIT</a>
@@ -51,7 +48,6 @@
                 <button type="submit" class="btn btn-primary">DELETE</button>
               </form>
           </tr>
-          <!-- Close the forEach using EJS here -->
           <% }); %>
         </tbody>
       </table>

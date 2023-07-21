@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+<div class="container-main">  
+  <br>&nbsp; 
+  <h4 align="center">Activity categories</h4>
+  <div class="row">    
+      <% if(errorMsg) { %>
+      <div class="alert alert-dismissible alert-primary">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Something went wrong !</strong> <p><%= errorMsg %></p>
+      </div>
+      <% } %>
+      <form action="/categories" method="POST">
+        <fieldset>
+          <div class="row">
+            <div class="form-group col-5">
+              <input type="text" name="category" class="form-control" placeholder="Category">
+            </div>
+            <div class="form-group col-5">
+              <input type="text" name="description" class="form-control" placeholder="Description">
+            </div>
+            <div class="form-group col-2">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+        </fieldset>
+      </form>
+      <br>&nbsp;
+      <br>&nbsp;
+      <table class="table table-hover table-secondary"">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% categories.forEach(c => { %>
+          <tr>
+            <td><%= c.category %></td>
+            <td><%= c.description %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

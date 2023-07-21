@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const noteSchema = new Schema(
   {
     note: {
-      type: String      
-    }
+      type: String,
+    },
   },
   {
     timestamps: true,

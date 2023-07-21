@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
 const activitySchema = new Schema(
   {
     activity: {
@@ -14,12 +13,12 @@ const activitySchema = new Schema(
       required: true,
     },
     activitytime: Date,
-    notes: [],
-    //notes: [noteSchema],
-    /*notes: [{
+    category: {
       type: Schema.Types.ObjectId,
-      ref: "Note",
-    }],*/
+      ref: "Category",
+    },
+    notes: [],
+
     priority: String,
   },
   {

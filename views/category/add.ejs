@@ -3,7 +3,8 @@
   <div class="row">
     <div class="col-6">
       <br />
-      <h4 align="center">Edit Actvities</h4>
+      <br />
+      <h4 align="center">Add Actvities</h4>
       <% if(errorMsg) { %>
       <div class="alert alert-dismissible alert-primary">
         <button
@@ -15,10 +16,10 @@
         <p><%= errorMsg %></p>
       </div>
       <% } %>
-      <form action="/activities/<%= activity._id%>?_method=PUT" method="POST">
+      <form action="/activities" method="POST">
         <fieldset>
           <div class="form-group">
-            <label class="form-label mt-2"
+            <label class="form-label mt-3"
               >Date and Time <%= activitydate%></label
             >
             <input
@@ -35,53 +36,29 @@
               type="text"
               name="activity"
               class="form-control"
-              value="<%= activity.activity %> "
+              placeholder="Activity"
             />
-          </div>
-          <div class="form-group">
-            <label for="category" class="form-label mt-2">Category</label>
-            <select class="form-select" id="category" name="category">
-              <% categories.forEach(c => { if(c.id == activity.category.id) { %>
-              <option value="<%= c._id %>" selected><%= c.category %></option>
-              <% } else { %>
-              <option value="<%= c._id %>"><%= c.category %></option>
-              <% } %> <% }) %>
-            </select>
           </div>
           <div class="form-group" name="notes-div" id="notes-div">
             <label class="form-label mt-2">Notes</label>
-            <% activity.notes.forEach(note => { %>
             <input
               type="text"
               name="notes"
               id="notes"
               class="form-control"
               placeholder="Note"
-              value="<%=note%>"
             />
-            <% }); %>
           </div>
-          <div class="row">
-            <div class="col-11">
-              <h2 align="right">
-                <a
-                  href="javascript:deleteNoteInput()"
-                  style="text-decoration: none"
-                  >-</a
-                >
-              </h2>
-            </div>
-            <div class="col-1">
-              <h2 align="right">
-                <a
-                  href="javascript:addNoteInput()"
-                  style="text-decoration: none"
-                  >+</a
-                >
-              </h2>
-            </div>
-          </div>
-          <br />
+          <h2 align="right">
+            <a href="javascript:addNoteInput()" style="text-decoration: none"
+              >+</a
+            >
+          </h2>
+          <h2 align="right">
+            <a href="javascript:deleteNoteInput()" style="text-decoration: none"
+              >-</a
+            >
+          </h2>
           <br />
           <div class="form-check form-switch">
             <input
@@ -95,12 +72,11 @@
             >
           </div>
           <br />
-          <button type="submit" class="btn btn-primary">Update Activity</button>
+          <button type="submit" class="btn btn-primary">Add Activity</button>
         </fieldset>
       </form>
       <br />
     </div>
   </div>
 </div>
-
 <%- include('../partials/footer') %>

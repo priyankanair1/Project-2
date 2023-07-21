@@ -1,5 +1,7 @@
 const Activity = require("../models/activity");
 const Note = require("../models/note");
+const Category = require("../models/category");
+
 const moment = require("moment");
 
 module.exports = {
@@ -29,7 +31,7 @@ async function index(req, res) {
         $lte: moment(activityday).endOf("day").toDate(),
       },
       user: req.user.id,
-    });
+    }).populate("category");
 
     const priorities = activities.filter((a) => a.priority);
 
@@ -45,11 +47,14 @@ async function index(req, res) {
   }
 }
 
-function add(req, res) {
-  let activitydate = formatDate(new Date())
+async function add(req, res) {
+  let activitydate = formatDate(new Date());
+  const categories = await Category.find({});
+
   res.render("activities/add", {
     title: "Add Activity",
     activitydate,
+    categories,
     errorMsg: "",
   });
 }
@@ -62,22 +67,13 @@ async function create(req, res) {
       user: req.user.id,
       priority: req.body.priority,
       notes: req.body.notes,
+      category: req.body.category,
     });
-    
-    await Activity.create(activity);
 
-    //console.log("activity created");
-    /*const promises = req.body.notes.map(function (n) {
-      console.log("note in mappppp");
-      console.log(n);
-      let note = new Note({
-        note: n,
-      });  
-      await Note.create(note);*/
+    await Activity.create(activity);
 
     res.redirect("/activities");
   } catch (err) {
-    // Typically some sort of validation error
     console.log(err);
     res.render("activities/add", {
       title: "Add Activity",
@@ -87,7 +83,6 @@ async function create(req, res) {
 }
 
 async function deleteActivity(req, res) {
-  console.log("delete");
   try {
     const activity = await Activity.findOne({ _id: req.params.id });
     await Activity.deleteOne(activity);
@@ -109,43 +104,44 @@ function formatDate(dateVal) {
   var sYear = newDate.getFullYear();
   var sHour = newDate.getHours();
   var sMinute = padValue(newDate.getMinutes());
-  
+
   var iHourCheck = parseInt(sHour);
 
   if (iHourCheck > 12) {
-      sHour = iHourCheck - 12;
-  }
-  else if (iHourCheck === 0) {
-      sHour = "12";
+    sHour = iHourCheck - 12;
+  } else if (iHourCheck === 0) {
+    sHour = "12";
   }
 
   sHour = padValue(sHour);
-  
-  return sYear + "-" + sMonth + "-" + sDay +"T" + sHour + ":" + sMinute;  
+
+  return sYear + "-" + sMonth + "-" + sDay + "T" + sHour + ":" + sMinute;
 }
 
 function padValue(value) {
-  return (value < 10) ? "0" + value : value;
+  return value < 10 ? "0" + value : value;
 }
 
 async function edit(req, res) {
-  const activity = await Activity.findOne({ _id: req.params.id });
-  let activitydate = formatDate(activity.activitytime)
+  const activity = await Activity.findOne({ _id: req.params.id }).populate(
+    "category"
+  );
+  const categories = await Category.find({});
+  let activitydate = formatDate(activity.activitytime);
   res.render("activities/edit", {
     title: "Edit Activity",
     errorMsg: "",
     activity,
     activitydate,
+    categories,
   });
 }
 
 async function update(req, res) {
   try {
-    await Activity.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
-      { new: true }
-    );
+    await Activity.findOneAndUpdate({ _id: req.params.id }, req.body, {
+      new: true,
+    });
     res.redirect("/activities");
   } catch (error) {
     console.log(error.message);
