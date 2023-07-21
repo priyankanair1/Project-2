@@ -13,6 +13,9 @@ Features includes :-
 6-Everything displayed in post login home page and option to filter with date.
 7-User can view  priority list of activities as separate list.
 
+LINK TO TRELLO:-
+https://trello.com/b/GpNemfEI/project-2-personal-planner
+
 
 SCREENSHOTS;-
 ![LOGIN page](resources/PreLoginHome.png)
@@ -32,7 +35,7 @@ Technologies Used:-
 9-HEROKU-For Deployment
 
 GETTING STARTED:-
-
+https://gentle-stream-12815-b8cf5b89c2bf.herokuapp.com
 
 NEXT STEP:- Future Enhancements
 1-Able to view weekly/monthly plans in homepage.
